@@ -1,1 +1,20 @@
+.header{
+	width: 100%;
+	height: 100px;
+	background: rgb(5,0,36);
+	background: linear-gradient(90deg, rgba(5,0,36,1) 0%, rgba(121,9,120,0.9948354341736695) 39%, rgba(55,0,255,1) 100%); 
+	padding-top: 100px;
+}
 
+.pages{
+	color: #ffffff;
+	margin-left: 10%;
+	text-decoration: none;
+	font-size: 200%;
+}
+
+.br{
+	display: block;
+    margin: 1000px 0;
+	height:1000px;
+}
