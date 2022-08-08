@@ -18,7 +18,10 @@
   
   <body>
 	
-	
+	<div class = "header2">
+		<a href="index.html" class="pages">Home</a>
+		<p class = "pages">Chess by 4EPEHKOB</p>
+	</div>
 
 	<p onclick = "Alert()">Hello world!</p>
 	<input type = "button" onclick = "Allert()" value = "Display">
@@ -244,19 +247,24 @@
 							cfi = -1;
 						}
 						else{
-							console.log('else');
-							
-							console.log(cfi);
-							console.log(field_id);
-							
-							console.log(sasha[cfi]);
-							console.log(sasha[field_id]);
-							
-							sasha[field_id] = sasha[cfi];
-							console.log(sasha);
-							sasha[cfi] = 0;
-							cfi = -1;
-							console.log(sasha);
+							if (sasha[cfi] != 0){
+								console.log('else');
+								
+								console.log(cfi);
+								console.log(field_id);
+								
+								console.log(sasha[cfi]);
+								console.log(sasha[field_id]);
+								
+								sasha[field_id] = sasha[cfi];
+								console.log(sasha);
+								sasha[cfi] = 0;
+								cfi = -1;
+								console.log(sasha);
+							}
+							else{
+							cfi = field_id;
+							}
 						}
 						board_update();
 					}
