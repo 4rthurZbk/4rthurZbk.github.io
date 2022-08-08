@@ -86,3 +86,8 @@
 	background-color: #dddddd;
 	font-size: 150%;
 }
+
+.chess_board{
+	width:100px;
+	height:100px;
+}
