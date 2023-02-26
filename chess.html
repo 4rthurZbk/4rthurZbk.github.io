@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 	<title>Zikr</title>
-	<link rel="stylesheet" href="zirk.css">
+	<link rel="stylesheet" href="zirk_4_chess.css">
 	<!-- <script src="js/chess_scripts.js"></script> -->
 	
 	<link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
@@ -12,12 +12,11 @@
 	<link rel="manifest" href="icon/site.webmanifest">
 	<link rel="mask-icon" href="icon/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#ffffff">
-	  
+	<meta name="theme-color" content="#ffffff">  
   </head>
-  
+
+
   <body>
-	
 	<div class = "header2">
 		<a href="index.html" class="pages">Home</a>
 		<p class = "pages">Chess by 4EPEHKOB</p>
@@ -26,17 +25,17 @@
 	<p onclick = "Alert()">Hello world!</p>
 	<input type = "button" onclick = "Allert()" value = "Display">
 	
-	<table class = "table">
+	<table>
 		<tr>
-			<th class = "table_colums" style = "padding: 10px 10px">x</th>
-			<th class = "table_colums" style = "padding: 10px 10px">1</th>
-			<th class = "table_colums" style = "padding: 10px 10px">2</th>
-			<th class = "table_colums" style = "padding: 10px 10px">3</th>
-			<th class = "table_colums" style = "padding: 10px 10px">4</th>
-			<th class = "table_colums" style = "padding: 10px 10px">5</th>
-			<th class = "table_colums" style = "padding: 10px 10px">6</th>
-			<th class = "table_colums" style = "padding: 10px 10px">7</th>
-			<th class = "table_colums" style = "padding: 10px 10px">8</th>
+			<th>x</th>
+			<th>1</th>
+			<th>2</th>
+			<th>3</th>
+			<th>4</th>
+			<th>5</th>
+			<th>6</th>
+			<th>7</th>
+			<th>8</th>
 		</tr>
 		
 		<tr>
@@ -219,8 +218,8 @@
 							2, 2, 2, 2, 2, 2, 2, 2,
 							0, 0, 0, 0, 0, 0, 0, 0,
 							0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 2, 3, 0, 0, 0, 0,
+							0, 0, 0, 0, 1, 5, 0, 0,
 							1, 1, 1, 1, 1, 1, 1, 1,
 							3, 5, 7, 9, 11, 7, 5, 3
 						  ];
@@ -248,19 +247,94 @@
 						}
 						else{
 							if (sasha[cfi] != 0){
-								console.log('else');
+								//console.log('else');
+								//
+								//console.log(cfi);
+								//console.log(field_id);
+								//
+								//console.log(sasha[cfi]);
+								//console.log(sasha[field_id]);
 								
-								console.log(cfi);
-								console.log(field_id);
+								if (sasha[cfi]%2 - sasha[field_id]%2 != 0 || sasha[field_id] == 0){
 								
-								console.log(sasha[cfi]);
-								console.log(sasha[field_id]);
-								
-								sasha[field_id] = sasha[cfi];
-								console.log(sasha);
-								sasha[cfi] = 0;
+									//white prawn
+									if (sasha[cfi] == 1 && cfi>47 && cfi-field_id == 16 && sasha[field_id] == 0 && sasha[cfi-8] == 0){
+										change_position(field_id, cfi);
+									}
+									else if(sasha[cfi] == 1 && cfi-field_id == 8 && sasha[field_id] == 0){
+										change_position(field_id, cfi);
+									}
+									else if(sasha[cfi] == 1 && (cfi-field_id == 7 || cfi-field_id == 9) && sasha[field_id] != 0 && sasha[field_id]%2 == 0){
+										change_position(field_id, cfi);
+									}
+									
+									//black prawn
+									else if (sasha[cfi] == 2 && cfi<16 && field_id-cfi == 16 && sasha[field_id] == 0 && sasha[parseInt(cfi)+8] == 0){
+										change_position(field_id, cfi);
+									}
+									else if(sasha[cfi] == 2 && field_id-cfi == 8 && sasha[field_id] == 0){
+										change_position(field_id, cfi);
+									}
+									else if(sasha[cfi] == 2 && (field_id-cfi == 7 || field_id-cfi == 9) && sasha[field_id] != 0 && sasha[field_id]%2 == 1){
+										change_position(field_id, cfi);
+									}
+									
+									//white rook
+									else if (sasha[cfi] == 3 && (sasha[field_id]%2 == 0 || sasha[field_id] == 0) && cfi%8 == field_id%8){
+										if (field_id < cfi){
+											console.log('1111111');
+											var check_1 = (cfi - field_id)%8;
+											var check_2 = 0;
+											console.log(field_id);
+											console.log(cfi);
+											console.log('1111111');
+											for (var i = field_id; i > cfi; i += 8){
+												if(sasha[i] != 0){
+													check_2 ++;
+												}
+											}
+											console.log(check_1);
+											console.log(check_2);
+											if (check_1 == check_2){
+												change_position(field_id, cfi);
+											}
+										}
+										
+										//if (field_id > cfi){
+										//	var check_1 = (field_id - cfi)%8
+										//	var check_2 = 0
+										//	for (var i = cfi; i < field_id; i += 8){
+										//		if(sasha[i] != 0){
+										//			check_2 ++
+										//		}
+										//	}	
+										//	if (check_1 == check_2){
+										//		change_position(field_id, cfi);
+										//	}
+										//}
+									}
+									//else if (sasha[cfi] == 3 && (sasha[field_id]%2 == 0 || sasha[field_id] == 0) && ~~(cfi/8) == ~~(field_id/8)){
+									//	change_position(field_id, cfi);
+									//}
+									
+									else{
+										console.log('else');
+										//console.log('sasha[cfi]: '+sasha[cfi]);
+										//console.log('cfi: '+cfi);
+										//console.log('field_id: '+field_id);
+										//console.log('field_id-cfi:',field_id-cfi);
+										//console.log('sasha[field_id]: '+sasha[field_id]);
+										//console.log('sasha[cfi+8]:',sasha[parseInt(cfi)+8]);
+										//console.log('sasha[cfi]-sasha[field_id]:',sasha[cfi]-sasha[field_id]);
+									}
+									
+									
+								}
+								else{
+									console.log('oooooooooooo');
+								}
 								cfi = -1;
-								console.log(sasha);
+								//console.log(sasha);
 							}
 							else{
 							cfi = field_id;
@@ -286,6 +360,13 @@
 					}
 					//console.log(item.getAttribute('src'));
 				}
+			}
+			
+			function change_position(field_id, cfi){
+				sasha[field_id] = sasha[cfi];
+				console.log(sasha);
+				sasha[cfi] = 0;
+				cfi = -1;
 			}
 			
 			get_field_id();
